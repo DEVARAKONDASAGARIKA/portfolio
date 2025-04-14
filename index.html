@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sagarika | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div id="loader-wrapper">
+    <div class="loader-logo">
+      <h1>Sagarika</h1>
+    </div>
+    <div class="loader-spinner"></div>
+  </div>
+  
+  <button class="toggle-btn" id="darkModeToggle">🌙</button>
+  <header>
+    <img src="https://miro.medium.com/v2/resize:fit:5002/1*vKbgWeoG68_lpfgxqt8rCA.jpeg" alt="Profile Picture" class="profile-img" />
+    <h1>Sagarika</h1>
+    <p>Computer Science Undergraduate</p>
+  </header>
+
+  <main>
+    <section class="reveal">
+      <h2 class="section-title">About Me</h2>
+      <p>Hey there! I’m a curious coder who loves blending logic and creativity. I started my journey with C and C++, diving deep into how things work under the hood. 
+        Now, I enjoy switching gears between Python scripts, clean HTML/CSS layouts, and fun JavaScript interactions. I like turning ideas into interactive websites and backing them up with solid MySQL databases. 
+        Whether I’m building something cool from scratch or debugging like a detective, I’m all in. Always learning, always building, and always up for a challenge!</p>
+    </section>
+
+    <section class="reveal">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill"><i class="fas fa-c"></i><div>C</div></div>
+        <div class="skill"><i class="fas fa-code"></i><div>C++</div></div>
+        <div class="skill"><i class="fab fa-python"></i><div>Python</div></div>
+        <div class="skill"><i class="fab fa-html5"></i><div>HTML</div></div>
+        <div class="skill"><i class="fab fa-css3-alt"></i><div>CSS</div></div>
+        <div class="skill"><i class="fab fa-js-square"></i><div>JavaScript</div></div>
+        <div class="skill"><i class="fas fa-database"></i><div>MySQL</div></div>
+      </div>
+    </section>
+    
+      <section class="reveal projects-section">
+        <h2 class="section-title">Projects</h2>
+        <div class="timeline">
+      
+          <div class="timeline-item project-card">
+            <div class="project-icon hospital"><i class="fas fa-hospital"></i></div>
+            <div class="project-content">
+              <h3>Hospital Management System (Ongoing)</h3>
+              <p>
+                • Browser-based interface using HTML, CSS, JavaScript.<br>
+                • Backend logic using PostgreSQL triggers and procedures.<br>
+                • Features: patient registration, appointments, test scheduling.
+              </p>
+            </div>
+          </div>
+      
+          <div class="timeline-item project-card">
+            <div class="project-icon network"><i class="fas fa-network-wired"></i></div>
+            <div class="project-content">
+              <h3>TCP Congestion Control – CN Project (Ongoing)</h3>
+              <p>
+                • Used Mininet for simulating networks and generating traffic.<br>
+                • Analyzed RTT of Reno, Cubic, and BBR algorithms.<br>
+                • Visualized with Python + Matplotlib.
+              </p>
+            </div>
+          </div>
+      
+          <div class="timeline-item project-card">
+            <div class="project-icon web"><i class="fas fa-globe"></i></div>
+            <div class="project-content">
+              <h3>Interactive Portfolio Website</h3>
+              <p>
+                • Fully responsive, animated portfolio using HTML, CSS, JavaScript.<br>
+                • Chatbot powered by open-source LLM for resume Q&A.<br>
+                • Git-managed and cloud-deployed.
+              </p>
+            </div>
+          </div>
+      
+          <div class="timeline-item project-card">
+            <div class="project-icon game"><i class="fas fa-gamepad"></i></div>
+            <div class="project-content">
+              <h3>Tic-Tac-Toe Game</h3>
+              <p>
+                • CLI-based game developed in C using loops, conditionals, functions.<br>
+                • Simple and fun gameplay for two players.<br>
+                • Great exercise in C logic and control structures.
+              </p>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+      
+      
+    </section>
+    
+
+    <section class="reveal">
+      <h2 class="section-title">Resume</h2>
+      <p>You can download my resume below:</p>
+      <a href="https://drive.google.com/file/d/1MiQzedrxMoXH4a0y7qLxo2mC6MXeiHju/view?usp=drivesdk" download class="resume-btn">Download Resume</a>
+    </section>
+
+    <section class="reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-icons">
+        <a href="https://www.linkedin.com/in/sagarika-devarakonda-298125278/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/DEVARAKONDASAGARIKA" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:sagarikadevarakonda2004@gmail.com
+        "><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
+
+<div id="chatbot-container">
+  <button id="chatbot-toggle">💬</button>
+  <div id="chatbot-window" class="hidden">
+    <div class="chatbot-header">
+      <span>Ask Me Anything!</span>
+      <button id="chatbot-close">&times;</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <input type="text" id="chatbot-input" placeholder="Type a question..." />
+  </div>
+</div>
+
+
+  </main>
+
+  <footer>
+    &copy; 2025 Sagarika. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
