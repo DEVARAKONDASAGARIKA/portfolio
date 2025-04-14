@@ -25,61 +25,6 @@ const reveals = document.querySelectorAll(".reveal");
     setTimeout(() => loader.style.display = "none", 500);
   });
 
-
-// const chatbotToggle = document.getElementById("chatbot-toggle");
-// const chatbotWindow = document.getElementById("chatbot-window");
-// const chatbotClose = document.getElementById("chatbot-close");
-// const chatbotInput = document.getElementById("chatbot-input");
-// const chatbotMessages = document.getElementById("chatbot-messages");
-
-// // Toggle chatbot
-// chatbotToggle.addEventListener("click", () => {
-//   chatbotWindow.classList.toggle("hidden");
-// });
-
-// chatbotClose.addEventListener("click", () => {
-//   chatbotWindow.classList.add("hidden");
-// });
-
-// // Predefined Q&A for resume/portfolio
-// const answers = {
-//   "skills": "I have experience in C, C++, Python, HTML, CSS, JavaScript, and MySQL.",
-//   "projects": "Some of my key projects include a Hospital Management System, TCP Congestion Control analysis using Mininet, a Portfolio Website, and a CLI Tic-Tac-Toe Game.",
-//   "resume": "You can download my resume from the Resume section or this link: [Resume](https://drive.google.com/file/d/1MiQzedrxMoXH4a0y7qLxo2mC6MXeiHju/view?usp=drivesdk)",
-//   "portfolio": "This website is fully responsive, animated, and integrated with a chatbot. Built using HTML, CSS, JavaScript and hosted on a cloud platform.",
-//   "contact": "You can connect with me on LinkedIn, GitHub, or via email using the icons in the Contact section below."
-// };
-
-// chatbotInput.addEventListener("keypress", function (e) {
-//   if (e.key === "Enter" && chatbotInput.value.trim() !== "") {
-//     const userInput = chatbotInput.value.toLowerCase();
-//     addMessage("user", chatbotInput.value);
-//     chatbotInput.value = "";
-
-//     // Find matching answer
-//     let found = false;
-//     for (let key in answers) {
-//       if (userInput.includes(key)) {
-//         addMessage("chatbot", answers[key]);
-//         found = true;
-//         break;
-//       }
-//     }
-//     if (!found) {
-//       addMessage("chatbot", "Sorry, I’m still learning. Try asking about skills, projects, or resume!");
-//     }
-
-//     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-//   }
-// });
-
-// function addMessage(sender, text) {
-//   const messageDiv = document.createElement("div");
-//   messageDiv.classList.add("chat-message", sender);
-//   messageDiv.textContent = text;
-//   chatbotMessages.appendChild(messageDiv);
-// }
-
 const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbotWindow = document.getElementById("chatbot-window");
 const chatbotClose = document.getElementById("chatbot-close");
