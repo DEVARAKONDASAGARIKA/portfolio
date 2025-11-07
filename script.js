@@ -43,7 +43,7 @@ chatbotClose.addEventListener("click", () => {
 // Predefined Q&A
 const answers = {
   "skills": "🧠 My skills include C, C++, Python, HTML, CSS, JavaScript, and MySQL.",
-  "projects": "🚀 I’ve worked on a Hospital Management System, TCP Congestion Control project, a responsive Portfolio Website, and a Tic-Tac-Toe game in C.",
+  "projects": "🚀 I’ve worked on a Hospital Management System, TCP Congestion Control project, a responsive Portfolio Website, and a Tic-Tac-Toe game in C, Developed the AHRC Research front-end UI, secure OTP-based login using Twilio and Integrated real-time API communication for Tube Well Automation module using Next.js.",
   "resume": "📄 You can download my resume here: [Resume](https://drive.google.com/file/d/1MiQzedrxMoXH4a0y7qLxo2mC6MXeiHju/view?usp=drivesdk)",
   "portfolio": "🌐 This site is built with HTML, CSS, and JavaScript. It’s responsive, animated, and even features this chatbot!",
   "contact": "📬 You can reach me via LinkedIn, GitHub, or Email—links are in the Contact section below.",
