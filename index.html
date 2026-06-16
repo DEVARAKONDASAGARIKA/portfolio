@@ -8,7 +8,510 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f9;
+      color: #1a1a2e;
+      transition: background 0.3s, color 0.3s;
+      padding: 2rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background: #1a1a2e;
+      color: #eaeaea;
+    }
+
+    /* Loader */
+    #loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader-logo h1 {
+      font-size: 3rem;
+      color: #e94560;
+      letter-spacing: 4px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .loader-spinner {
+      margin-top: 20px;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e94560;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #e94560;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(233, 69, 96, 0.4);
+      transition: 0.3s;
+    }
+
+    .toggle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e94560;
+      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.25);
+      transition: 0.3s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.02);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      color: #e94560;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #555;
+    }
+
+    body.dark-mode header p {
+      color: #bbb;
+    }
+
+    /* Sections */
+    section {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+      margin-bottom: 2.5rem;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    body.dark-mode section {
+      background: #16213e;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #e94560;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60%;
+      height: 4px;
+      background: #e94560;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .skill {
+      background: #f0f0f5;
+      padding: 1rem 0.5rem;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: default;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    body.dark-mode .skill {
+      background: #1f2a44;
+      color: #eaeaea;
+    }
+
+    .skill:hover {
+      transform: translateY(-4px);
+      background: #e94560;
+      color: #fff;
+    }
+
+    .skill i {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* Education Grid */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .edu-item {
+      background: #f8f8fc;
+      padding: 1.5rem;
+      border-radius: 16px;
+      border-left: 4px solid #e94560;
+    }
+
+    body.dark-mode .edu-item {
+      background: #1f2a44;
+    }
+
+    .edu-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: #e94560;
+    }
+
+    /* Two Column Layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .two-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .two-col ul li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    body.dark-mode .two-col ul li {
+      border-bottom-color: #2a3a5e;
+    }
+
+    .two-col ul li:last-child {
+      border-bottom: none;
+    }
+
+    /* Timeline / Projects */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      display: flex;
+      gap: 1.2rem;
+      background: #f8f8fc;
+      padding: 1.5rem;
+      border-radius: 16px;
+      transition: 0.3s;
+      border-left: 4px solid #e94560;
+    }
+
+    body.dark-mode .project-card {
+      background: #1f2a44;
+    }
+
+    .project-card:hover {
+      transform: translateX(6px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      min-width: 50px;
+      text-align: center;
+      color: #e94560;
+    }
+
+    .project-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #e94560;
+    }
+
+    .project-content p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Resume Button */
+    .resume-btn {
+      display: inline-block;
+      background: #e94560;
+      color: #fff;
+      padding: 12px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 0.8rem;
+      transition: 0.3s;
+      box-shadow: 0 4px 14px rgba(233, 69, 96, 0.3);
+    }
+
+    .resume-btn:hover {
+      background: #c73652;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+    }
+
+    /* Contact Icons */
+    .contact-icons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-top: 1rem;
+    }
+
+    .contact-icons a {
+      color: #1a1a2e;
+      transition: 0.3s;
+    }
+
+    body.dark-mode .contact-icons a {
+      color: #eaeaea;
+    }
+
+    .contact-icons a:hover {
+      color: #e94560;
+      transform: scale(1.15);
+    }
+
+    /* Chatbot */
+    #chatbot-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 200;
+    }
+
+    #chatbot-toggle {
+      background: #e94560;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(233, 69, 96, 0.45);
+      transition: 0.3s;
+    }
+
+    #chatbot-toggle:hover {
+      transform: scale(1.08);
+    }
+
+    #chatbot-window {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 340px;
+      max-height: 450px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    body.dark-mode #chatbot-window {
+      background: #1f2a44;
+    }
+
+    #chatbot-window.hidden {
+      display: none;
+    }
+
+    .chatbot-header {
+      background: #e94560;
+      color: #fff;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    #chatbot-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    #chatbot-messages {
+      flex: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      max-height: 300px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    body.dark-mode #chatbot-messages {
+      background: #16213e;
+    }
+
+    .chat-message {
+      padding: 10px 14px;
+      border-radius: 14px;
+      max-width: 85%;
+      word-wrap: break-word;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .chat-message.user {
+      background: #e94560;
+      color: #fff;
+      align-self: flex-end;
+    }
+
+    .chat-message.chatbot {
+      background: #eaeef2;
+      color: #1a1a2e;
+      align-self: flex-start;
+    }
+
+    body.dark-mode .chat-message.chatbot {
+      background: #2a3a5e;
+      color: #eaeaea;
+    }
+
+    #chatbot-input {
+      border: none;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      border-top: 1px solid #ddd;
+      outline: none;
+      background: #fff;
+      color: #1a1a2e;
+    }
+
+    body.dark-mode #chatbot-input {
+      background: #1f2a44;
+      color: #eaeaea;
+      border-top-color: #2a3a5e;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid #ddd;
+      font-weight: 300;
+      color: #777;
+    }
+
+    body.dark-mode footer {
+      border-top-color: #2a3a5e;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      #chatbot-window {
+        width: 280px;
+        right: 0;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+      .project-card {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="loader-wrapper">
@@ -19,6 +522,7 @@
   </div>
   
   <button class="toggle-btn" id="darkModeToggle">🌙</button>
+  
   <header>
     <img src="https://miro.medium.com/v2/resize:fit:5002/1*vKbgWeoG68_lpfgxqt8rCA.jpeg" alt="Profile Picture" class="profile-img" />
     <h1>Sagarika</h1>
@@ -26,11 +530,13 @@
   </header>
 
   <main>
+    <!-- About Me -->
     <section class="reveal">
       <h2 class="section-title">About Me</h2>
-      <p>I'm a 4th-year B.Tech student in Computer Science and Engineering at IIT Bhubaneswar with a CGPA of 6.77. My academic journey is backed by a strong 12th-grade performance (92.9%) and a perfect 10/10 in 10th grade. I'm passionate about building impactful tech — from ML-driven classifiers to full-stack dashboards. I’ve interned under Prof. Sukantha Panda, contributing to the AHRC research dashboard using Next.js, Twilio authentication, and real-time API integration. I enjoy solving problems, learning new tools, and collaborating on meaningful projects. Beyond code, I’m an active sportsperson and volunteer, always ready for a challenge.</p>
+      <p>I'm a 4th-year B.Tech student in Computer Science and Engineering at IIT Bhubaneswar with a CGPA of 6.77. My academic journey is backed by a strong 12th-grade performance (92.9%) and a perfect 10/10 in 10th grade. I'm passionate about building impactful tech — from ML-driven classifiers to full-stack dashboards. I've interned under Prof. Sukantha Panda, contributing to the AHRC research dashboard using Next.js, Twilio authentication, and real-time API integration. I enjoy solving problems, learning new tools, and collaborating on meaningful projects. Beyond code, I'm an active sportsperson and volunteer, always ready for a challenge.</p>
     </section>
 
+    <!-- Skills -->
     <section class="reveal">
       <h2 class="section-title">Skills</h2>
       <div class="skills-grid">
@@ -45,13 +551,14 @@
         <div class="skill"><i class="fas fa-code-branch"></i><div>Git</div></div>
       </div>
     </section>
-    
+
+    <!-- Projects & Experience -->
     <section class="reveal projects-section">
       <h2 class="section-title">Projects & Experience</h2>
       <div class="timeline">
         <!-- Internship -->
-        <div class="timeline-item project-card">
-          <div class="project-icon research"><i class="fas fa-briefcase"></i></div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-briefcase"></i></div>
           <div class="project-content">
             <h3>Research Intern – IIT Bhubaneswar</h3>
             <p>
@@ -64,8 +571,8 @@
         </div>
 
         <!-- Multi-Class Flower Species -->
-        <div class="timeline-item project-card">
-          <div class="project-icon flower"><i class="fas fa-leaf"></i></div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-leaf"></i></div>
           <div class="project-content">
             <h3>Multi-Class Flower Species Classification</h3>
             <p>
@@ -77,8 +584,8 @@
         </div>
 
         <!-- TCP Congestion Control -->
-        <div class="timeline-item project-card">
-          <div class="project-icon network"><i class="fas fa-network-wired"></i></div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-network-wired"></i></div>
           <div class="project-content">
             <h3>TCP Congestion Control Simulation</h3>
             <p>
@@ -90,8 +597,8 @@
         </div>
 
         <!-- Interactive Portfolio -->
-        <div class="timeline-item project-card">
-          <div class="project-icon web"><i class="fas fa-globe"></i></div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-globe"></i></div>
           <div class="project-content">
             <h3>Interactive Portfolio Website</h3>
             <p>
@@ -103,8 +610,8 @@
         </div>
 
         <!-- Hospital Management System -->
-        <div class="timeline-item project-card">
-          <div class="project-icon hospital"><i class="fas fa-hospital"></i></div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-hospital"></i></div>
           <div class="project-content">
             <h3>Hospital Management System</h3>
             <p>
@@ -117,7 +624,7 @@
       </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- Education -->
     <section class="reveal">
       <h2 class="section-title">Education</h2>
       <div class="education-grid">
@@ -160,12 +667,14 @@
       </div>
     </section>
 
+    <!-- Resume -->
     <section class="reveal">
       <h2 class="section-title">Resume</h2>
       <p>Download my detailed resume below:</p>
-      <a href="https://drive.google.com/file/d/1ykbS-efWufqiI_vbD4l-I9XJG3-0ZEjJ/view?usp=sharing" download class="resume-btn">Download Resume</a>
+      <a href="https://drive.google.com/file/d/1e4_pTcGp9pkwCS1YcnrVF7So-DzSvWRr/view?usp=sharing" download class="resume-btn">Download Resume</a>
     </section>
 
+    <!-- Contact -->
     <section class="reveal">
       <h2 class="section-title">Contact</h2>
       <div class="contact-icons">
@@ -175,6 +684,7 @@
       </div>
     </section>
 
+    <!-- Chatbot -->
     <div id="chatbot-container">
       <button id="chatbot-toggle">💬</button>
       <div id="chatbot-window" class="hidden">
